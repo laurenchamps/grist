@@ -131,7 +131,9 @@
               <div class="newlined">{{ business }}</div>
             </template>
             <template v-else>
-              <div>{{ business.Contact }}</div>
+              <template v-if="business.Contact">
+                {{ business.Contact }}
+              </template>
               <div>{{ business.Name }}</div>
               <template v-if="business.Street1">
                 {{ business.Street1 }},

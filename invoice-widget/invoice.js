@@ -39,6 +39,7 @@ function addDemo(row) {
   if (!row.Client) {
     row.Client = {
       Name: 'Client.Name',
+      Contact: 'Client.Contact',
       Street1: 'Client.Street1',
       Street2: 'Client.Street2',
       City: 'Client.City',
