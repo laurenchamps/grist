@@ -57,6 +57,7 @@
       <template v-if="invoice">
         <div class="top">
           <div class="supplier">
+            <img class="logo" src="logo-brick-new.png" alt="Lauren Champs" />
             <div
               v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])"
             >
@@ -80,14 +81,20 @@
                   </template>
                 </div>
                 <template v-if="business.Email">
-                  <div class="email">e: {{ business.Email }}</div>
+                  <div class="email"
+                    >e:
+                    <a v-bind:href="'mailto:' + business.Email"
+                      >{{ business.Email }}</a
+                    ></div
+                  >
                 </template>
                 <template v-if="business.Phone">
                   <div class="phone">m: {{ business.Phone }}</div>
                 </template>
                 <template v-if="business.Website">
                   <div class="website"
-                    ><a v-bind:href="business.Url"
+                    >w:
+                    <a v-bind:href="business.Url"
                       >{{ business.Website }}</a
                     ></div
                   >
@@ -99,9 +106,7 @@
             <div class="header">
               <div class="meta title">Invoice</div>
             </div>
-            <div class="info invoice-number"
-              ><span>No:</span> {{ invoice.Number }}</div
-            >
+            <div class="info invoice-number">{{ invoice.Number }}</div>
             <div class="info" v-if="invoice.Issued"
               ><div class="meta date-tag">Issued</div> {{ invoice.Issued |
               asDate }}</div
@@ -212,7 +217,7 @@
           >
         </div>
 
-        <div class="thanks"> Thank you! </div>
+        <div class="thanks"> Thank you! 😊</div>
 
         <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
           <div class="help">

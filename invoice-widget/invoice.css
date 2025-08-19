@@ -6,8 +6,8 @@ body {
   padding: 5px;
 }
 
-.meta {
-  color: #3b3d3b;
+a {
+  color: #bd4a2e;
 }
 
 .header,
@@ -46,6 +46,13 @@ body {
   display: block;
 }
 
+.logo {
+  display: block;
+  max-height: 120px;
+  width: auto;
+  margin-block-end: 1.2rem;
+}
+
 .block {
   /* padding-left: 5px; */
   display: block;
@@ -57,7 +64,7 @@ body {
 }
 
 .billto + .details {
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .due {
@@ -135,6 +142,7 @@ table.items th,
 
 .gst {
   text-align: right;
+  margin-block-start: -0.6rem;
 }
 
 div.date-tag,
@@ -214,11 +222,10 @@ div.summary .details {
   margin-block-start: 3.6rem;
 }
 
-/* div.instructions,
 .newlined,
 p.note {
   white-space: pre-line;
-} */
+}
 
 div.paid {
   position: relative;
