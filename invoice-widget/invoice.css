@@ -81,6 +81,16 @@ a {
   color-adjust: exact !important;
 }
 
+.total {
+  color: white;
+}
+
+.total .title {
+  display: inline-block;
+  font-weight: 700;
+  margin-inline-end: 1rem;
+}
+
 .summary .title {
   margin-left: 4px;
   color: white;
