@@ -9,7 +9,8 @@ const exampleData = {
     Street2: null,
     City: 'New York',
     State: 'NY',
-    Zip: '10003',
+    Postcode: '10003',
+    ABN: '123 000 12 234',
     Email: 'applause@thunder.com',
     Phone: '+1-800-111-1111',
     Website: 'applause.com',
@@ -20,7 +21,7 @@ const exampleData = {
     Street1: '100 Banana St',
     City: 'Bananaberg',
     State: 'NJ',
-    Zip: '07048',
+    Postcode: '07048',
   },
 
   Items: [

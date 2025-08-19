@@ -1,5 +1,5 @@
 function ready(fn) {
-  if (document.readyState !== 'loading'){
+  if (document.readyState !== 'loading') {
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
@@ -9,12 +9,18 @@ function ready(fn) {
 function addDemo(row) {
   if (!row.Issued && !row.Due) {
     for (const key of ['Number', 'Issued', 'Due']) {
-      if (!row[key]) { row[key] = key; }
+      if (!row[key]) {
+        row[key] = key;
+      }
     }
     for (const key of ['Subtotal', 'Deduction', 'Taxes', 'Total']) {
-      if (!(key in row)) { row[key] = key; }
+      if (!(key in row)) {
+        row[key] = key;
+      }
     }
-    if (!('Note' in row)) { row.Note = '(Anything in a Note column goes here)'; }
+    if (!('Note' in row)) {
+      row.Note = '(Anything in a Note column goes here)';
+    }
   }
   if (!row.Invoicer) {
     row.Invoicer = {
@@ -23,11 +29,12 @@ function addDemo(row) {
       Street2: 'Invoicer.Street2',
       City: 'Invoicer.City',
       State: '.State',
-      Zip: '.Zip',
+      Postcode: '.Postcode',
+      ABN: '.ABN',
       Email: 'Invoicer.Email',
       Phone: 'Invoicer.Phone',
-      Website: 'Invoicer.Website'
-    }
+      Website: 'Invoicer.Website',
+    };
   }
   if (!row.Client) {
     row.Client = {
@@ -36,8 +43,8 @@ function addDemo(row) {
       Street2: 'Client.Street2',
       City: 'Client.City',
       State: '.State',
-      Zip: '.Zip'
-    }
+      Postcode: '.Postcode',
+    };
   }
   if (!row.Items) {
     row.Items = [
@@ -68,45 +75,48 @@ const data = {
 };
 let app = undefined;
 
-Vue.filter('currency', formatNumberAsUSD)
-function formatNumberAsUSD(value) {
-  if (typeof value !== "number") {
-    return value || '—';      // falsy value would be shown as a dash.
+Vue.filter('currency', formatNumberAsAUD);
+function formatNumberAsAUD(value) {
+  if (typeof value !== 'number') {
+    return value || '—'; // falsy value would be shown as a dash.
   }
-  value = Math.round(value * 100) / 100;    // Round to nearest cent.
-  value = (value === -0 ? 0 : value);       // Avoid negative zero.
+  value = Math.round(value * 100) / 100; // Round to nearest cent.
+  value = value === -0 ? 0 : value; // Avoid negative zero.
 
   const result = value.toLocaleString('en', {
-    style: 'currency', currency: 'USD'
-  })
+    style: 'currency',
+    currency: 'AUD',
+  });
   if (result.includes('NaN')) {
     return value;
   }
   return result;
 }
 
-Vue.filter('fallback', function(value, str) {
+Vue.filter('fallback', function (value, str) {
   if (!value) {
-    throw new Error("Please provide column " + str);
+    throw new Error('Please provide column ' + str);
   }
   return value;
 });
 
-Vue.filter('asDate', function(value) {
-  if (typeof(value) === 'number') {
+Vue.filter('asDate', function (value) {
+  if (typeof value === 'number') {
     value = new Date(value * 1000);
   }
-  const date = moment.utc(value)
-  return date.isValid() ? date.format('MMMM DD, YYYY') : value;
+  const date = moment.utc(value);
+  return date.isValid() ? date.format('DD MMMM YYYY') : value;
 });
 
 function tweakUrl(url) {
-  if (!url) { return url; }
+  if (!url) {
+    return url;
+  }
   if (url.toLowerCase().startsWith('http')) {
     return url;
   }
   return 'https://' + url;
-};
+}
 
 function handleError(err) {
   console.error(err);
@@ -137,9 +147,9 @@ function updateInvoice(row) {
   try {
     data.status = '';
     if (row === null) {
-      throw new Error("(No data - not on row - please add or select a row)");
+      throw new Error('(No data - not on row - please add or select a row)');
     }
-    console.log("GOT...", JSON.stringify(row));
+    console.log('GOT...', JSON.stringify(row));
     if (row.References) {
       try {
         Object.assign(row, row.References);
@@ -151,15 +161,33 @@ function updateInvoice(row) {
     // Add some guidance about columns.
     const want = new Set(Object.keys(addDemo({})));
     const accepted = new Set(['References']);
-    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due', 
-                        'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note', 'Paid'];
+    const importance = [
+      'Number',
+      'Client',
+      'Items',
+      'Total',
+      'Invoicer',
+      'Due',
+      'Issued',
+      'Subtotal',
+      'Deduction',
+      'Taxes',
+      'Note',
+      'Paid',
+    ];
     if (!(row.Due || row.Issued)) {
-      const seen = new Set(Object.keys(row).filter(k => k !== 'id' && k !== '_error_'));
-      const help = row.Help = {};
+      const seen = new Set(
+        Object.keys(row).filter((k) => k !== 'id' && k !== '_error_')
+      );
+      const help = (row.Help = {});
       help.seen = prepareList(seen);
-      const missing = [...want].filter(k => !seen.has(k));
-      const ignoring = [...seen].filter(k => !want.has(k) && !accepted.has(k));
-      const recognized = [...seen].filter(k => want.has(k) || accepted.has(k));
+      const missing = [...want].filter((k) => !seen.has(k));
+      const ignoring = [...seen].filter(
+        (k) => !want.has(k) && !accepted.has(k)
+      );
+      const recognized = [...seen].filter(
+        (k) => want.has(k) || accepted.has(k)
+      );
       if (missing.length > 0) {
         help.expected = prepareList(missing, importance);
       }
@@ -202,34 +230,41 @@ function updateInvoice(row) {
   }
 }
 
-ready(function() {
+ready(function () {
   // Update the invoice anytime the document data changes.
   grist.ready();
   grist.onRecord(updateInvoice);
 
   // Monitor status so we can give user advice.
-  grist.on('message', msg => {
+  grist.on('message', (msg) => {
     // If we are told about a table but not which row to access, check the
     // number of rows.  Currently if the table is empty, and "select by" is
     // not set, onRecord() will never be called.
     if (msg.tableId && !app.rowConnected) {
-      grist.docApi.fetchSelectedTable().then(table => {
-        if (table.id && table.id.length >= 1) {
-          app.haveRows = true;
-        }
-      }).catch(e => console.log(e));
+      grist.docApi
+        .fetchSelectedTable()
+        .then((table) => {
+          if (table.id && table.id.length >= 1) {
+            app.haveRows = true;
+          }
+        })
+        .catch((e) => console.log(e));
     }
-    if (msg.tableId) { app.tableConnected = true; }
-    if (msg.tableId && !msg.dataChange) { app.RowConnected = true; }
+    if (msg.tableId) {
+      app.tableConnected = true;
+    }
+    if (msg.tableId && !msg.dataChange) {
+      app.RowConnected = true;
+    }
   });
 
-  Vue.config.errorHandler = function (err, vm, info)  {
+  Vue.config.errorHandler = function (err, vm, info) {
     handleError(err);
   };
 
   app = new Vue({
     el: '#app',
-    data: data
+    data: data,
   });
 
   if (document.location.search.includes('demo')) {
