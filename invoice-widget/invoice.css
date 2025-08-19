@@ -1,17 +1,23 @@
 body {
-  font-family: Sans-Serif;
+  font-family: 'Inter', Calibri, Arial, sans-serif;
+  font-size: 16px;
   max-width: 800px;
   margin: 0 auto;
   padding: 5px;
 }
 
 .meta {
-  color: #bd4a2e;
+  color: #3b3d3b;
+}
+
+.header,
+.info {
+  text-align: right;
 }
 
 .header .title {
-  font-size: 300%;
-  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 300;
 }
 
 .header .meta {
@@ -23,7 +29,16 @@ body {
 }
 
 .info .meta::after {
-  content: " :";
+  content: ':';
+}
+
+.info {
+  line-height: 1.4;
+}
+
+.invoice-number {
+  font-size: 1.5rem;
+  margin-block-end: 2rem;
 }
 
 .supplier {
@@ -32,11 +47,21 @@ body {
 }
 
 .block {
-  padding-left: 5px;
+  /* padding-left: 5px; */
   display: block;
 }
 
-.client, .items, .summary {
+.billto {
+  margin-block-start: 60px;
+  font-weight: 700;
+}
+
+.billto + .details {
+  line-height: 1.4;
+}
+
+.items,
+.summary {
   padding: 1px;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -45,13 +70,13 @@ body {
   color-adjust: exact !important;
 }
 
-.client .title, .summary .title {
+.summary .title {
   margin-left: 4px;
   color: white;
   text-transform: uppercase;
 }
 
-.client .details, .summary .details {
+.summary .details {
   padding: 4px;
   background-color: var(--grist-theme-page-panels-main-panel-bg, white);
 }
@@ -75,12 +100,15 @@ table.items td {
   padding: 4px;
 }
 
-.client .title, .summary .title, table.items th, .help .title {
+.summary .title,
+table.items th,
+.help .title {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.money, .number {
+.money,
+.number {
   text-align: right;
 }
 
@@ -107,7 +135,8 @@ div.summary {
   align-items: flex-end;
 }
 
-div.summary .part, div.summary .total {
+div.summary .part,
+div.summary .total {
   padding: 10px;
 }
 
@@ -133,7 +162,8 @@ div.summary .total {
   border-bottom-right-radius: 0.5em;
 }
 
-div.summary .title, div.summary .details {
+div.summary .title,
+div.summary .details {
   text-align: right;
 }
 
@@ -144,13 +174,13 @@ div.summary::after {
 }
 
 .phone::before {
-  content: "\260e";
+  content: '\260e';
   margin-right: 0.5em;
 }
 
 .email::before {
-  content: "\2709";
-  margin-right: 0.5em;  
+  content: '\2709';
+  margin-right: 0.5em;
 }
 
 .thanks {
@@ -159,7 +189,9 @@ div.summary::after {
   font-size: 200%;
 }
 
-div.instructions, .newlined, p.note {
+div.instructions,
+.newlined,
+p.note {
   white-space: pre-line;
 }
 
@@ -302,4 +334,3 @@ div.column-name {
   margin-bottom: 1px;
   border-radius: 0.25em;
 }
-

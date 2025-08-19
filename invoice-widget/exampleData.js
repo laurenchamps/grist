@@ -1,7 +1,8 @@
 const exampleData = {
-  Number: 14999,
+  Number: 'INV0001',
   Issued: Date.parse('2020-10-12') / 1000,
   Due: Date.parse('2020-11-12') / 1000,
+  Terms: '7 days',
 
   Invoicer: {
     Name: 'Thunderous Applause',
