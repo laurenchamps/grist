@@ -46,6 +46,14 @@ function addDemo(row) {
       Postcode: '.Postcode',
     };
   }
+  if (!row.Bank) {
+    row.Bank = {
+      PayID: 'Bank.PayID',
+      BSB: 'Bank.BSB',
+      AccountNumber: 'Bank.AccountNumber',
+      AccountName: 'Bank.AccountName',
+    };
+  }
   if (!row.Items) {
     row.Items = [
       {
@@ -75,8 +83,8 @@ const data = {
 };
 let app = undefined;
 
-Vue.filter('currency', formatNumberAsAUD);
-function formatNumberAsAUD(value) {
+Vue.filter('currency', formatNumberAsUSD);
+function formatNumberAsUSD(value) {
   if (typeof value !== 'number') {
     return value || '—'; // falsy value would be shown as a dash.
   }
@@ -85,7 +93,7 @@ function formatNumberAsAUD(value) {
 
   const result = value.toLocaleString('en', {
     style: 'currency',
-    currency: 'AUD',
+    currency: 'USD',
   });
   if (result.includes('NaN')) {
     return value;

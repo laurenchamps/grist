@@ -80,10 +80,10 @@
                   </template>
                 </div>
                 <template v-if="business.Email">
-                  <div class="email">{{ business.Email }}</div>
+                  <div class="email">e: {{ business.Email }}</div>
                 </template>
                 <template v-if="business.Phone">
-                  <div class="phone">{{ business.Phone }}</div>
+                  <div class="phone">m: {{ business.Phone }}</div>
                 </template>
                 <template v-if="business.Website">
                   <div class="website"
@@ -107,9 +107,9 @@
               asDate }}</div
             >
             <div class="info" v-if="invoice.Terms"
-              ><div class="meta">Payment terms</div> {{ invoice.Terms }}</div
+              ><div class="meta terms-tag">Terms</div> {{ invoice.Terms }}</div
             >
-            <div class="info" v-if="invoice.Due"
+            <div class="info due" v-if="invoice.Due"
               ><div class="meta date-tag">Due</div> {{ invoice.Due | asDate
               }}</div
             >
@@ -126,6 +126,7 @@
               <div class="newlined">{{ business }}</div>
             </template>
             <template v-else>
+              <div>{{ business.Contact }}</div>
               <div>{{ business.Name }}</div>
               <template v-if="business.Street1">
                 {{ business.Street1 }},
@@ -169,7 +170,7 @@
         </table>
 
         <div class="summary">
-          <div class="part">
+          <!-- <div class="part">
             <div class="title">Subtotal</div>
             <div class="details">{{ invoice.Subtotal | currency }}</div>
           </div>
@@ -180,16 +181,38 @@
           <div class="part">
             <div class="title">Taxes</div>
             <div class="details">{{ invoice.Taxes | currency }}</div>
-          </div>
+          </div> -->
           <div class="total">
-            <div class="title">Total</div>
-            <div class="details">{{ invoice.Total | currency }}</div>
+            <div class="title"
+              ><strong>Total (AUD):</strong> {{ invoice.Total | currency }}</div
+            >
           </div>
         </div>
+        <div class="gst"><em>No GST applicable</em></div>
 
         <template v-if="invoice.Note">
           <p class="note">{{ invoice.Note }}</p>
         </template>
+
+        <div class="instructions">
+          <div class="title"
+            >Please use reference {{ invoice.Number }} and make payments
+            to:</div
+          >
+          <div><span class="title">PayID:</span> {{ invoice.Bank.PayID }}</div>
+          <div class="or">or</div>
+          <div
+            ><span class="title">Account Name:</span> {{
+            invoice.Bank.AccountName }}</div
+          >
+          <div><span class="title">BSB:</span> {{ invoice.Bank.BSB }}</div>
+          <div
+            ><span class="title">Acc #:</span> {{ invoice.Bank.AccountNumber
+            }}</div
+          >
+        </div>
+
+        <div class="thanks"> Thank you! </div>
 
         <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
           <div class="help">
@@ -230,10 +253,6 @@
         <template v-if="invoice.Paid">
           <div class="paid"> PAID </div>
         </template>
-
-        <div class="footer">
-          <div class="thanks"> Thank you! </div>
-        </div>
 
         <div class="print">
           <a href="javascript:window.print()">Print</a>

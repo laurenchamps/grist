@@ -60,12 +60,16 @@ body {
   line-height: 1.4;
 }
 
+.due {
+  font-weight: 700;
+}
+
 .items,
 .summary {
   padding: 1px;
   margin-top: 1em;
   margin-bottom: 1em;
-  background: #bd4a2e;
+  background: #092f3c;
   -webkit-print-color-adjust: exact !important;
   color-adjust: exact !important;
 }
@@ -83,7 +87,7 @@ body {
 
 table.items {
   width: 100%;
-  border: 1px solid #bd4a2e;
+  border: 1px solid #092f3c;
   border-collapse: collapse;
 }
 
@@ -91,13 +95,26 @@ table.items th {
   text-align: left;
   color: white;
   text-transform: uppercase;
-  font-weight: normal;
+  font-weight: 300;
   padding: 4px;
+}
+
+table.items th.money,
+table.items th.number {
+  text-align: right;
 }
 
 table.items td {
   background-color: var(--grist-theme-page-panels-main-panel-bg, white);
   padding: 4px;
+}
+
+table.items th.money {
+  width: 15%;
+}
+
+table.items th.number {
+  width: 10%;
 }
 
 .summary .title,
@@ -116,7 +133,12 @@ table.items th,
   padding-bottom: 1em;
 }
 
-div.date-tag {
+.gst {
+  text-align: right;
+}
+
+div.date-tag,
+div.terms-tag {
   display: inline-block;
   min-width: 80px;
 }
@@ -129,7 +151,7 @@ div.top {
 }
 
 div.summary {
-  display: flex;
+  /* display: flex; */
   width: 100%;
   padding: 0px;
   align-items: flex-end;
@@ -140,26 +162,16 @@ div.summary .total {
   padding: 10px;
 }
 
-div.summary .part {
+/* div.summary .part {
   width: 20%;
   padding-right: 20px;
-}
+} */
 
 div.summary .total {
   display: block;
-  flex-grow: 1;
+  text-align: right;
   background: #092f3c;
-  font-size: 140%;
-}
-
-div.summary {
-  border-top-right-radius: 2em;
-  border-bottom-right-radius: 2em;
-}
-
-div.summary .total {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
+  font-size: 1.4rem;
 }
 
 div.summary .title,
@@ -167,13 +179,13 @@ div.summary .details {
   text-align: right;
 }
 
-div.summary::after {
+/* div.summary::after {
   content: '';
   display: block;
   clear: both;
-}
+} */
 
-.phone::before {
+/* .phone::before {
   content: '\260e';
   margin-right: 0.5em;
 }
@@ -181,19 +193,32 @@ div.summary::after {
 .email::before {
   content: '\2709';
   margin-right: 0.5em;
+} */
+
+.instructions {
+  margin-block-start: 2.4rem;
+}
+
+.instructions .title {
+  font-weight: 700;
+  margin-block-end: 1.6rem;
+}
+
+.instructions .or {
+  margin-block: 0.8rem;
 }
 
 .thanks {
-  text-align: right;
-  color: #3b3d3b;
-  font-size: 200%;
+  text-align: left;
+  font-size: 1.8rem;
+  margin-block-start: 3.6rem;
 }
 
-div.instructions,
+/* div.instructions,
 .newlined,
 p.note {
   white-space: pre-line;
-}
+} */
 
 div.paid {
   position: relative;
