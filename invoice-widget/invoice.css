@@ -100,8 +100,11 @@ a {
   background-color: var(--grist-theme-page-panels-main-panel-bg, white);
 }
 
-table.items, table.items th, table.items td {
+table.items {
   width: 100%;
+}
+
+table.items, table.items th, table.items td {
   border: 1px solid #092f3c;
   border-collapse: collapse;
 }
@@ -127,14 +130,6 @@ table.items th.number {
   width: 10%;
 }
 
-table.items .money {
-  text-align: right;
-}
-
-table.items .number {
-  text-align: center;
-}
-
 table.items td {
   background-color: var(--grist-theme-page-panels-main-panel-bg, white);
   padding: 4px;
@@ -146,6 +141,13 @@ table.items th,
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.money {
+  text-align: right;
+}
+
+.number {
+  text-align: center;
 
 .address {
   padding-bottom: 1em;
