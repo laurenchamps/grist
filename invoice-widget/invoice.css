@@ -80,9 +80,9 @@ a {
   color-adjust: exact !important;
 }
 
-.total {
+/* .total {
   color: white;
-}
+} */
 
 .total .title {
   display: inline-block;
@@ -103,7 +103,7 @@ a {
 table.items {
   width: 100%;
   border: 1px solid #092f3c;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 table.items th {
@@ -140,9 +140,12 @@ table.items th,
   padding-bottom: 10px;
 }
 
-.money,
-.number {
+.money {
   text-align: right;
+}
+
+.number {
+  text-align: center;
 }
 
 .address {
