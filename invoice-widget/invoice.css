@@ -106,6 +106,10 @@ table.items {
   /* border-collapse: collapse; */
 }
 
+table.items td {
+  border: 1px solid #092f3c;
+}
+  
 table.items th {
   text-align: left;
   color: #000000;
@@ -116,8 +120,12 @@ table.items th {
 }
 
 table.items th.money,
-table.items th.number {
+table.items {
   text-align: right;
+}
+
+th.number {
+  text-align: center;
 }
 
 table.items td {
@@ -190,7 +198,7 @@ div.summary .total {
 div.summary .total {
   display: block;
   text-align: right;
-  background: #092f3c;
+  /* background: #092f3c; */
   font-size: 1.4rem;
 }
 
