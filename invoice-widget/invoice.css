@@ -108,25 +108,15 @@ table.items, table.items th, table.items td {
   
 table.items th {
   text-align: left;
-  /* color: #000000;
-  background-color: #facdb8; */
+  /* color: #000000; */
+  background-color: #facdb8; 
   text-transform: uppercase;
   font-weight: 300;
   padding: 4px;
 }
 
-table.items th.money,
 table.items {
-  text-align: right;
-}
-
-th.number {
-  text-align: center;
-}
-
-table.items td {
-  background-color: var(--grist-theme-page-panels-main-panel-bg, white);
-  padding: 4px;
+  text-align: left;
 }
 
 table.items th.money {
@@ -137,6 +127,11 @@ table.items th.number {
   width: 10%;
 }
 
+table.items td {
+  background-color: var(--grist-theme-page-panels-main-panel-bg, white);
+  padding: 4px;
+}
+
 .summary .title,
 table.items th,
 .help .title {
@@ -144,11 +139,11 @@ table.items th,
   padding-bottom: 10px;
 }
 
-.money {
+table.items .money {
   text-align: right;
 }
 
-.number {
+table.items .number {
   text-align: center;
 }
 
