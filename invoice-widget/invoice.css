@@ -76,7 +76,6 @@ a {
   padding: 1px;
   margin-top: 1em;
   margin-bottom: 1em;
-  background: #092f3c;
   -webkit-print-color-adjust: exact !important;
   color-adjust: exact !important;
 }
@@ -93,7 +92,6 @@ a {
 
 .summary .title {
   margin-left: 4px;
-  color: white;
   text-transform: uppercase;
 }
 
@@ -110,7 +108,8 @@ table.items {
 
 table.items th {
   text-align: left;
-  color: white;
+  color: #000000;
+  background-color: #facdb8;
   text-transform: uppercase;
   font-weight: 300;
   padding: 4px;
