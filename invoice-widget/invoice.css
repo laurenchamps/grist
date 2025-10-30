@@ -100,20 +100,16 @@ a {
   background-color: var(--grist-theme-page-panels-main-panel-bg, white);
 }
 
-table.items {
+table.items, table.items th, table.items td {
   width: 100%;
   border: 1px solid #092f3c;
-  /* border-collapse: collapse; */
-}
-
-table.items td {
-  border: 1px solid #092f3c;
+  border-collapse: collapse;
 }
   
 table.items th {
   text-align: left;
-  color: #000000;
-  background-color: #facdb8;
+  /* color: #000000;
+  background-color: #facdb8; */
   text-transform: uppercase;
   font-weight: 300;
   padding: 4px;
