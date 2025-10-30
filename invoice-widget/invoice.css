@@ -119,13 +119,19 @@ table.items {
   text-align: left;
 }
 
-table.items .money {
+table.items th.money {
   width: 15%;
+}
+
+table.items th.number {
+  width: 10%;
+}
+
+table.items .money {
   text-align: right;
 }
 
 table.items .number {
-  width: 10%;
   text-align: center;
 }
 
